@@ -336,16 +336,19 @@ def _get_class_frequencies_weights_HisDB(gt_images):
     ndarray[double] of size (num_classes)
         The weights vector as a 1D array normalized (sum up to 1)
     """
+    import skimage.io as io
     logging.info('Begin computing class frequencies weights')
-    all_labels = np.array([np.array(Image.open(path))[:, :, 2].flatten() for path in gt_images]).flatten()
+    all_labels = np.concatenate(np.array([np.array(io.imread(path))[:, :, 2].flatten() for path in gt_images]).flatten()).ravel()
 
     total_num_samples = len(all_labels)
     num_samples_per_class = np.unique(all_labels, return_counts=True)[1]
+
     class_frequencies = (num_samples_per_class / total_num_samples)
     logging.info('Finished computing class frequencies weights')
     logging.info('Class frequencies (rounded): {class_frequencies}'
                  .format(class_frequencies=np.around(class_frequencies * 100, decimals=2)))
     # Normalize vector to sum up to 1.0 (in case the Loss function does not do it)
+    print("return val: " + str((1 / num_samples_per_class) / ((1 / num_samples_per_class).sum())))
     return (1 / num_samples_per_class) / ((1 / num_samples_per_class).sum())
 
 

@@ -100,7 +100,7 @@ def one_hot_to_np_bgr(matrix):
     numpy array of size [C x H x W] (BGR)
     """
     B = np.argmax(matrix, axis=0)
-    class_to_B = {i: j for i, j in enumerate([1, 2, 4, 6, 8, 10, 12, 14])}
+    class_to_B = {i: j for i, j in enumerate([1, 2, 4])}
 
     masks = [B == old for old in class_to_B.keys()]
 
@@ -176,7 +176,7 @@ def gt_to_one_hot(matrix, num_classes):
     onehot_encoded = onehot_encoder.fit_transform(integer_encoded).astype(np.int8)
 
     np.place(im_np, im_np == 0, 1) # needed to deal with 0 fillers at the borders during testing (replace with background)
-    replace_dict = {k: v for k, v in zip([1, 2, 4, 6, 8, 10, 12, 14], onehot_encoded)}
+    replace_dict = {k: v for k, v in zip([1, 2, 4], onehot_encoded)}
 
     # create the one hot matrix
     one_hot_matrix = np.asanyarray(

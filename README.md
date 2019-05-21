@@ -1,4 +1,22 @@
-# DeepDIVA: A Highly-Functional Python Framework for Reproducible Experiments
+# Introduction
+
+This fork contains modifications to the hisdb runner class. These modifications were made in order to be able to work with our own dataset for
+the task of printed and handwritten text identification in mixed documents. To reproduce the U-net experiment described in the paper, install
+DeepDiva using the intructions further bellow and execute following command:
+
+``` shell
+source activate deepdiva
+```
+
+``` shell
+python template/RunMe.py --runner-class semantic_segmentation_hisdb --output-folder ../output_yolo_try2 --dataset-folder datasets/printed-hw-seg/ --ignoregit --model-name unet --epochs 20 --experiment-name unet_ultra_final  --batch-size 16 --crop-size 256 --imgs-in-memory 3 --crops-per-image 500 --optimizer-name Adam --no-val-conf-matrix -j 16 --seed 1451368622
+```
+
+This will train, validate and test the model. Note that even though we tell DeepDIVA to train for 20 epochs, the model at epoch 6 will be chosen to run
+the tests, as further training overfitts the network.
+
+
+### DeepDIVA: A Highly-Functional Python Framework for Reproducible Experiments
 
 DeepDIVA is an infrastructure designed to enable quick and intuitive
 setup of reproducible experiments with a large range of useful analysis
@@ -16,7 +34,7 @@ DeepDIVA is implemented in Python and uses the deep learning framework
 It is completely open source and accessible as Web Service through
 [DIVAServices](http://divaservices.unifr.ch).
 
-## Additional resources
+### Additional resources
 
 - [DeepDIVA Homepage](https://diva-dia.github.io/DeepDIVAweb/index.html)
 - [Tutorials](https://diva-dia.github.io/DeepDIVAweb/articles.html)

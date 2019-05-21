@@ -12,7 +12,7 @@ from ._VGG import vgg11, vgg11_bn, vgg13, vgg13_bn, vgg16, vgg16_bn, vgg19, vgg1
 from .BabyResNet import babyresnet18, babyresnet34, babyresnet50, babyresnet101, babyresnet152
 from ._DenseNet import densenet121, densenet161, densenet169, densenet201
 # FCN
-from .UNet import Unet
+from .UNet import unet
 from .SegNet import SegNet
 from .Xception import xception
 from .FusionNet import FusionNet
@@ -21,7 +21,7 @@ from .Deeplabv3 import deeplabv3
 from .CAE_medium import CAE_medium
 from .BabyUnet import BabyUnet
 from .Tiramisu import fcdensenet57, fcdensenet67, fcdensenet103
-
+from .SimplisticFCN import SimplisticFCN
 
 """
 Formula to compute the output size of a conv. layer

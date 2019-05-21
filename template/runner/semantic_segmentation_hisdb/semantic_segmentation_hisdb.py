@@ -65,9 +65,7 @@ class SemanticSegmentationHisdb:
             Accuracy value for test split
         """
 
-        int_val_to_class_name = {1: "background", 2: "comment", 4: "decoration", 6: "comment_decoration",
-                                 8: "maintext", 10: "maintext_comment", 12: "maintext_decoration",
-                                 14: "maintext_comment_decoration"}
+        int_val_to_class_name = {1: "printed", 2: "handwritten", 4: "background"}
 
         class_names = [v for k, v in int_val_to_class_name.items()]
         num_classes = len(class_names)
